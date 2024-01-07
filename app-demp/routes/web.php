@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\userinfo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 }); 
-Route::get('/page', function () {
-    echo "html";
+Route::post('/submitform', function () {
+    $obj = new Userinfo();
+    $obj->name =request('name');
+    $obj->info =request('info');
+    echo $obj->name;
+    echo $obj->info;
+
+    $obj->save();
 });
+
 Route::get('/page1', function () {
     return view('page');
 });
