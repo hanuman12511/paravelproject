@@ -24,15 +24,27 @@ Route::post('/submitform', function () {
     echo $obj->info;
 
     $obj->save();
+    return redirect('/submitform');
+    return view('home');
 });
 
-Route::get('/page1', function () {
-    return view('page');
+Route::get('/submitform  ', function () {
+    return view('home');
 });
 
+Route::get('/admin1  ', function () {
+    return view('admin.adminpage');
+});
+Route::get('/logout ', function () {
+    return view('admin.logout');
+});
 Route::get('/home', function () {
     return view('home');
 });
 Route::get('/page2/{name}', function ($name) {
     echo "name".$name;
+});
+Route::post("/register",function(){
+
+        echo request('name');
 });

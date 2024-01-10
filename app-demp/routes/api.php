@@ -26,3 +26,8 @@ Route::post('/page4/{name}', function ($name) {
     echo "name".$name;
 });
 
+Route::post('/register', function (Request $request) {
+    $email = strrev($request->input('email'));
+    return $reversed;
+  });
+
