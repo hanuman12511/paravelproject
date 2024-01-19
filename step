@@ -13,6 +13,10 @@ view,router
 goto web.php
 api
 
+
+
+create controller
+1.php artisan make:controller UserController
 create database and tale
 
 1.php artisan make:model userinfo

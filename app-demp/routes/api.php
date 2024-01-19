@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,3 +31,6 @@ Route::post('/register', function (Request $request) {
     return $reversed;
   });
 
+
+  Route::get("/product",[ApiController::class,"ProductShow"]);
+  Route::post("/productinsert",[ApiController::class,"ProductInsert"]);

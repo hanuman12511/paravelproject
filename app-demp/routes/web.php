@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\userinfo;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,14 +18,17 @@ use App\Models\userinfo;
 Route::get('/', function () {
     return view('welcome');
 }); 
-Route::post('/submitform', function () {
+Route::post('/submitform', function (Request $request) {
     $obj = new Userinfo();
     $obj->name =request('name');
-    $obj->info =request('info');
+   // $obj->info =request('info');
     echo $obj->name;
     echo $obj->info;
-
-    $obj->save();
+    $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        echo $imageName;
+    request()->image->move(public_path('images'), $imageName);
+    $obj->info =$imageName;
+     $obj->save();
     return redirect('/submitform');
     return view('home');
 });
@@ -46,5 +51,14 @@ Route::get('/page2/{name}', function ($name) {
 });
 Route::post("/register",function(){
 
-        echo request('name');
+        echo "name". request('name');
+        $name1= request('name');
+        //return redirect('/register');
+        
+        return view('register',compact('name1'));
 });
+Route::get('/register ', function () {
+    return view('register');
+}); 
+/* Route::get('/user', [UserController::class, 'show']);
+Route::post('/user', [UserController::class, 'adddata']); */
