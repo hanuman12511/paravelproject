@@ -51,11 +51,15 @@ Route::get('/page2/{name}', function ($name) {
 });
 Route::post("/register",function(){
 
-        echo "name". request('name');
-        $name1= request('name');
-        //return redirect('/register');
-        
-        return view('register',compact('name1'));
+    $obj =  Userinfo::all();
+      
+   
+   $data= response()->json($obj);
+ 
+    //return redirect('/register');
+       
+        //return view('register',compact("name"));
+        return view('show',["data"=>$obj]);
 });
 Route::get('/register ', function () {
     return view('register');
